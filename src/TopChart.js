@@ -22,8 +22,18 @@ function TopChart({ product }) {
       <div className="TopChartLegend">
         Динамика продаж
         <div className="TopChartGreenDot" />
+        { product.salesBoost > 0 &&
+          <div className="TopProductCard-DynamicsSales">
+            +{Math.round(product.salesBoost * 100)}%
+          </div>
+          } 
         <span>Продажи</span>
         <div className="TopChartBlueDot" />
+        { product.pricesBoost > 0 &&
+          <div className="TopProductCard-DynamicsPrices">
+            +{Math.round(product.pricesBoost * 100)}%
+          </div>
+          }
         <span>Цена</span>
       </div>
       <ResponsiveContainer

@@ -39,13 +39,30 @@ function getShopsChart(dateRange) {
 }
 
 const SKU_DB = {
-    '2F3B4A33FC7E8A61C70E74F958C291DF': 'Костюм «Dri-FIT»'
+    '2F3B4A33FC7E8A61C70E74F958C291DF': 'Костюм «Dri-FIT»',
+    '3CBA4607809D119DA4710ED80EC34F8C': 'Костюм «Duo Pink»',
+    'E4CBE8BA3DBC3C6E2E85EC808EFCF3F5': 'Костюм «Up Drei»',
+    '91EAD5D4A1205DE123B751E9B5322BB8': 'Костюм «Comfort»',
+    '95333638A9E567B1BCC0DDAFC91A39A7': 'Костюм «Trapstar»',
+    '4CA87881AC2B71D637FBBBB938AAE2F8': 'Костюм «Solday»',
+    'E34C40EFE375EE176F6D55C4FDCB9D21': 'Костюм «Better Boozy»',
+    '6A4EE9D4447328F9978C552BAE90FDC4': 'Костюм «Sport Track RD»',
+    '82679ED6AB16F320FC9566B50CBBA5E7': 'Костюм «PINK Fit»',
+    'CDBEA39F10B7940DE5397B73F512EE6F': 'Костюм «Academy07»',
+    '06F4CAE6A2764D141E53C3AC8282CD36': 'Костюм «Better Boozy»',
+    '5D74B67E1DAC42C7526F27A6BDA73FF6': 'Костюм «Belive in love»',
+    'FBBD26D7F689DCFAFA85A2B62833145B': 'Костюм «Let’s go»',
+    '289AEBCA82877CB19E7AA33E0E522883': 'Костюм «School-PK»',
+    '8770DB897247EF93B1EE66D6585156AB': 'Костюм «Classic 62-97»',
+    '19AB58E7A981925E37850D2BFF503CA0': 'Костюм «FC Strike»',
 }
 
 function productExtraInfo(gtin, chart, dateRange) {
     const avgSales = avg(chart.map(({ count }) => count))
+    const avgPrice = avg(chart.map(({ price }) => price))
     const tail = Math.min(Math.round(chart.length * 0.85), chart.length - 3)
     const salesBoost = avg(chart.slice(tail).map(({ count }) => count)) / avgSales - 1
+    const pricesBoost =  avg(chart.slice(tail).map(({ price }) => price)) / avgPrice - 1
     return {
         chart,
         shops: getShopsChart(dateRange),
@@ -53,7 +70,8 @@ function productExtraInfo(gtin, chart, dateRange) {
         name: SKU_DB[gtin] || 'Спортивный костюм (женский)',
         avgSales,
         salesBoost,
-        avgPrice: avg(chart.map(({ price }) => price)),
+        pricesBoost,
+        avgPrice,
         img: fs.existsSync(path.join(__dirname, `../../public/product-images/${gtin}.svg`)) ? `./product-images/${gtin}.svg` : null,
     }
 }

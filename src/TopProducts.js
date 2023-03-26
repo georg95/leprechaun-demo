@@ -32,15 +32,28 @@ const groups = [
 
 function TopProducts() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [region, setRegion] = useState(regions[0])
-  const [period, setPeriod] = useState(periods[2])
+  const [region, setRegion] = useState(searchParams.get('region') ?
+    regions.find(region => region.value === searchParams.get('region')) : regions[0])
+  const [period, setPeriod] = useState(searchParams.get('period') ?
+    periods.find(period => period.value === searchParams.get('period')) : periods[2])
   const [group, setGroup] = useState(searchParams.get('group') ?
     groups.find(group => group.value === searchParams.get('group')) : null)
   const [data, setData] = useState([])
+  const updateRegion = useCallback((region) => {
+    setRegion(region)
+    searchParams.set('region', region.value)
+    setSearchParams(searchParams)
+  }, [setRegion, searchParams, setSearchParams])
+  const updatePeriod = useCallback((period) => {
+    setPeriod(period)
+    searchParams.set('period', period.value)
+    setSearchParams(searchParams)
+  }, [setRegion, searchParams, setSearchParams])
   const updateGroup = useCallback((group) => {
     setGroup(group)
-    setSearchParams({ group: group.value })
-  }, [setGroup, setSearchParams])
+    searchParams.set('group', group.value)
+    setSearchParams(searchParams)
+  }, [setGroup, searchParams, setSearchParams])
 
  
   useEffect(() => {
@@ -62,8 +75,8 @@ function TopProducts() {
       </header>
       <div className="Content">
         <div className="Selects">
-            <Select options={regions} value={region} onChange={setRegion} />
-            <Select options={periods} value={period} onChange={setPeriod} />
+            <Select options={regions} value={region} onChange={updateRegion} />
+            <Select options={periods} value={period} onChange={updatePeriod} />
             <Select
               value={group}
               options={groups}

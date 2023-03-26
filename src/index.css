@@ -83,6 +83,20 @@ body {
   padding: 28px;
 }
 
+.TopProductCard-DynamicsPrices {
+  margin-right: 7px;
+  color: #0D75FF;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.TopProductCard-DynamicsSales {
+  margin-right: 7px;
+  color: #118E01;
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .TopProductCard-Image {
   width: 220px;
   height: 270px;
@@ -123,6 +137,7 @@ body {
 
 .TopChartLegend {
   display: flex;
+  align-items: center;
   margin-bottom: 32px;
 }
 
