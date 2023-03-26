@@ -1,0 +1,147 @@
+body {
+  font-size: 14px;
+  margin: 0;
+  color: #060D3F;
+  font-family: latoregular, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.Header {
+  height: 70px;
+  padding: 0 60px;
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  border-bottom: 1px solid #E6E7EC;
+}
+
+.Avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+}
+
+.Content {
+  padding: 32px 60px;
+}
+
+.ProductCard {
+  display: flex;
+  border: 1px solid #E6E7EC;
+  border-radius: 7px;
+}
+.ProductCard-Showcase {
+  width: 312px;
+  height: 312px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProductCard-Arrow {
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  margin: 0 16px;
+}
+
+.ProductCard-Image {
+  width: 170px;
+  height: 210px;
+}
+
+.ProductCard-Description {
+  margin-left: 24px;
+}
+.ProductCard-Description p {
+  color: #676B84;
+}
+.ProductCard-DescriptionText {
+  color: #9EA1B4;
+}
+
+.Selects {
+  display: flex;
+  margin-bottom: 32px;
+}
+.SelectTopType {
+  margin-bottom: 32px;
+  width: 300px;
+}
+.Selects > div {
+  flex: 1;
+}
+.Selects > div + div {
+  margin-left: 24px;
+}
+
+.TopProductCard {
+  display: flex;
+  border: 1px solid #E6E7EC;
+  border-radius: 7px;
+  padding: 28px;
+}
+
+.TopProductCard-Image {
+  width: 220px;
+  height: 270px;
+}
+
+.TopProductCard-Delimeter {
+  border-right: 1px solid #E6E7EC;
+  margin: 0 40px;
+}
+
+.TopProductCard + .TopProductCard {
+  margin-top: 14px;
+}
+
+.TopChart {
+  flex: 1;
+  color: #060D3F;
+}
+
+.TopChart h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.Back {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+  background: transparent;
+  cursor: pointer;
+  
+  border: 1px solid #CDCFD9;
+  border-radius: 7px;
+}
+
+.TopChartLegend {
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.TopChartLegend span {
+  color: #9EA1B4;
+}
+
+.TopChartGreenDot, .TopChartBlueDot {
+  margin-left: 14px;
+  margin-right: 7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.TopChartGreenDot {
+  background-color: #118E01;
+}
+
+.TopChartBlueDot {
+  background-color: #0D75FF;
+}
