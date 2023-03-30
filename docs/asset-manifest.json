@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.268706e3.css",
-    "main.js": "/static/js/main.04edddcb.js",
-    "index.html": "/index.html",
-    "main.268706e3.css.map": "/static/css/main.268706e3.css.map",
-    "main.04edddcb.js.map": "/static/js/main.04edddcb.js.map"
+    "main.css": "/leprechaun-demo/static/css/main.268706e3.css",
+    "main.js": "/leprechaun-demo/static/js/main.04edddcb.js",
+    "index.html": "/leprechaun-demo/index.html",
+    "main.268706e3.css.map": "/leprechaun-demo/static/css/main.268706e3.css.map",
+    "main.04edddcb.js.map": "/leprechaun-demo/static/js/main.04edddcb.js.map"
   },
   "entrypoints": [
     "static/css/main.268706e3.css",

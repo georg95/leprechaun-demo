@@ -1,6 +1,6 @@
 # leprechaun-demo
 
 Стенд:
-http://45.10.247.100:3000/
+https://georg95.github.io/leprechaun-demo/
 
 Если не работает, спросить https://t.me/ge0rgsh
