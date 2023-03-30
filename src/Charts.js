@@ -32,8 +32,7 @@ export function formatChartDate(chart) {
   })
 }
 
-function Charts({ chart, shops }) {
-  console.log('shops:', shops)
+function Charts({ chart }) {
   console.log('chart:', chart)
   return (
     <div>
@@ -116,7 +115,7 @@ function Charts({ chart, shops }) {
             height={300}
           >
           <AreaChart
-            data={shops}
+            data={chart}
           >
             <defs>
               <linearGradient id="colorShops" x1="0" y1="0" x2="0" y2="1">
@@ -126,7 +125,7 @@ function Charts({ chart, shops }) {
             </defs>
             <XAxis 
               dataKey="date"
-              domain={[shops[0].date, shops[shops.length - 1].date]}
+              domain={[chart[0].date, chart[chart.length - 1].date]}
               scale="time"
               type="number"
               tickFormatter={dateFormatter} />

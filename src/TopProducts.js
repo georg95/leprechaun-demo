@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import Select from 'react-select'
 import { prepareChart } from './Charts';
+import { server } from './settings';
 import TopChart from './TopChart';
 
 const topType = [
@@ -61,7 +62,7 @@ function TopProducts() {
     if (!group) {
       return
     }
-    fetch(`http://${window.location.hostname}:1234/top?region=${region.value}&range=${period.value}`).then(res => res.json()).then(data => {
+    fetch(`${server}/top?region=${region.value}&range=${period.value}`).then(res => res.json()).then(data => {
       console.log(data)
       data.forEach(({ chart }) => prepareChart(chart))
       setData(data)

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Charts, { formatChartDate, prepareChart } from './Charts';
+import Charts, { prepareChart } from './Charts';
+import { server } from './settings';
 
 function Product() {
   const [data, setData] = useState(null)
@@ -8,9 +9,12 @@ function Product() {
   const navigate = useNavigate()
   const query = new URLSearchParams(search)
   useEffect(() => {
-    fetch(`http://${window.location.hostname}:1234/product?gtin=${query.get('gtin')}&region=77&range=120`).then(res => res.json()).then(data => {
+    let productPath = 'product_v2'
+    if (query.get('v1')) {
+      productPath = 'product'
+    }
+    fetch(`${server}/${productPath}?gtin=${query.get('gtin')}&region=77&range=120`).then(res => res.json()).then(data => {
       prepareChart(data.chart)
-      formatChartDate(data.shops)
       setData(data)
     })
   }, [])
@@ -50,7 +54,7 @@ function Product() {
           </div>
         </div>
         { data &&
-        <Charts chart={data.chart} shops={data.shops} />
+        <Charts chart={data.chart} />
         }
       </div>
     </div>

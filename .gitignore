@@ -9,7 +9,6 @@
 /coverage
 
 # production
-/build
 /data
 /.vscode
 /.ipynb_checkpoints
