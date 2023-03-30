@@ -63,7 +63,6 @@ function TopProducts() {
       return
     }
     fetch(`${server}/top?region=${region.value}&range=${period.value}`).then(res => res.json()).then(data => {
-      console.log(data)
       data.forEach(({ chart }) => prepareChart(chart))
       setData(data)
     })
@@ -92,8 +91,9 @@ function TopProducts() {
         }
         { data.map((product) => (
             <Link
+                key={product.gtin}
                 className="TopProductCard"
-                to={`/product?gtin=${product.gtin}`}
+                to={`product?gtin=${product.gtin}`}
                 style={{ textDecoration: 'none' }}
             >
                 <img className="TopProductCard-Image" src={product.img || 'no-image.jpg'} />

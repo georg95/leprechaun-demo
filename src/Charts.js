@@ -33,7 +33,6 @@ export function formatChartDate(chart) {
 }
 
 function Charts({ chart }) {
-  console.log('chart:', chart)
   return (
     <div>
         <div className="SalesChart">
