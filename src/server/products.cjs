@@ -25,40 +25,36 @@ function avg(array) {
     return sum(array) / array.length
 }
 
-const SKU_DB = {
-    '2F3B4A33FC7E8A61C70E74F958C291DF': 'Костюм «Dri-FIT»',
-    '3CBA4607809D119DA4710ED80EC34F8C': 'Костюм «Duo Pink»',
-    'E4CBE8BA3DBC3C6E2E85EC808EFCF3F5': 'Костюм «Up Drei»',
-    '91EAD5D4A1205DE123B751E9B5322BB8': 'Костюм «Comfort»',
-    '95333638A9E567B1BCC0DDAFC91A39A7': 'Костюм «Trapstar»',
-    '4CA87881AC2B71D637FBBBB938AAE2F8': 'Костюм «Solday»',
-    'E34C40EFE375EE176F6D55C4FDCB9D21': 'Костюм «Better Boozy»',
-    '6A4EE9D4447328F9978C552BAE90FDC4': 'Костюм «Sport Track RD»',
-    '82679ED6AB16F320FC9566B50CBBA5E7': 'Костюм «PINK Fit»',
-    'CDBEA39F10B7940DE5397B73F512EE6F': 'Костюм «Academy07»',
-    '06F4CAE6A2764D141E53C3AC8282CD36': 'Костюм «Better Boozy»',
-    '5D74B67E1DAC42C7526F27A6BDA73FF6': 'Костюм «Belive in love»',
-    'FBBD26D7F689DCFAFA85A2B62833145B': 'Костюм «Let’s go»',
-    '289AEBCA82877CB19E7AA33E0E522883': 'Костюм «School-PK»',
-    '8770DB897247EF93B1EE66D6585156AB': 'Костюм «Classic 62-97»',
-    '19AB58E7A981925E37850D2BFF503CA0': 'Костюм «FC Strike»',
-}
+const metadataPath = path.join(__dirname, `../../public/product-images/products.json`)
+const SKU_DB = JSON.parse(fs.readFileSync(metadataPath, 'utf8'))
 
 function productExtraInfo(gtin, chart) {
     const avgSales = avg(chart.map(({ count }) => count))
     const avgPrice = avg(chart.map(({ price }) => price))
+    const avgShops = avg(chart.map(({ shops }) => shops))
     const tail = Math.min(Math.round(chart.length * 0.85), chart.length - 3)
-    const salesBoost = avg(chart.slice(tail).map(({ count }) => count)) / avgSales - 1
+    const salesBoostCount = avg(chart.slice(tail).map(({ count }) => count)) / avgSales - 1
     const pricesBoost =  avg(chart.slice(tail).map(({ price }) => price)) / avgPrice - 1
+    const shopsBoost = Math.round(avg(chart.slice(tail).map(({ shops }) => shops)) - avgShops)
+    const salesBoostRevenue = Math.round(avgPrice * (pricesBoost + 1) * avgSales * salesBoostCount)
+    const salesBoostPercentage = Math.round((pricesBoost + 1) * salesBoostCount * 100)
+    const totalRevenue = sum(chart.map(({ price, count }) => price * count))
+    const avgRevenue = totalRevenue / chart.length
     return {
         chart,
         gtin,
-        name: SKU_DB[gtin] || 'Спортивный костюм (женский)',
-        avgSales,
-        salesBoost,
+        name: SKU_DB[gtin] || 'Вода питьевая негазированная 0,5',
+        salesBoostRevenue,
+        salesBoostPercentage,
         pricesBoost,
-        avgPrice,
-        img: fs.existsSync(path.join(__dirname, `../../public/product-images/${gtin}.svg`)) ? `./product-images/${gtin}.svg` : null,
+        salesBoostCount,
+        shopsBoost,
+        avgPrice: Math.round(avgPrice),
+        totalRevenue: Math.round(totalRevenue),
+        avgRevenue: Math.round(avgRevenue),
+        avgShops: Math.round(avgShops),
+        avgSalesPerShop: Math.round(sum(chart.map(({ count }) => count)) / avgShops),
+        img: SKU_DB[gtin] ? `./product-images/${gtin}.svg` : null,
     }
 }
 
@@ -154,11 +150,12 @@ function topProducts({ region, range }) {
     const productsList = Object.values(products).map(product => {
         fillGaps(product.chart, dateRange)
         return productExtraInfo(product.gtin, product.chart)
-    }).filter(product => product.avgSales > 10)
-    // скачки продаж низколиквидных товаров считаем случайными
+    })
     
-    productsList.sort((a, b) => b.salesBoost - a.salesBoost)
-    return productsList.slice(0, 10)
+    productsList.sort((a, b) =>
+        b.salesBoostRevenue -
+        a.salesBoostRevenue)
+    return productsList.slice(0, 15)
 }
 
 module.exports = { getProduct, getProductV2, topProducts }

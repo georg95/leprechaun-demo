@@ -32,11 +32,25 @@ export function formatChartDate(chart) {
   })
 }
 
-function Charts({ chart }) {
+function Charts({ product }) {
+  const { chart } = product
+
   return (
     <div>
         <div className="SalesChart">
-          <h3>Динамика по продажам</h3>
+          <h3>
+            Динамика по продажам
+            <div className="ChartLegend">
+              <div className="ChartLegend-GreenDot" />
+              <div className="ChartLegend-SalesBoostRevenue">
+                {product.salesBoostRevenue > 0 ? '+' : ''}
+                {product.salesBoostRevenue} ₽
+              </div>
+              <div className="ChartLegend-SalesBoostPercentage">
+                ({product.salesBoostPercentage > 0 ? '+' : ''}{product.salesBoostPercentage}%)
+              </div>
+            </div>
+          </h3>
           <ResponsiveContainer
             width="100%"
             height={300}
@@ -72,7 +86,15 @@ function Charts({ chart }) {
         </ResponsiveContainer>
         </div>
         <div className="SalesChart">
-          <h3>Динамика по ценам</h3>
+          <h3>
+            Динамика по ценам
+            <div className="ChartLegend">
+              <div className="ChartLegend-BlueDot" />
+              <div className="ChartLegend-DynamicsPrices">
+                {product.pricesBoost > 0 ? '+' : ''}{Math.round(product.pricesBoost * 100)}%
+              </div>
+            </div>
+          </h3>
           <ResponsiveContainer
             width="100%"
             height={300}
@@ -108,7 +130,15 @@ function Charts({ chart }) {
           </ResponsiveContainer>
         </div>
         <div className="SalesChart">
-          <h3>Число магазинов</h3>
+          <h3>
+            Число магазинов
+            <div className="ChartLegend">
+              <div className="ChartLegend-RedDot" />
+              <div className="ChartLegend-ShopsBoost">
+                {product.shopsBoost > 0 ? '+' : ''}{product.shopsBoost}
+              </div>
+            </div>
+          </h3>
           <ResponsiveContainer
             width="100%"
             height={300}

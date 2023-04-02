@@ -21,16 +21,21 @@ function TopChart({ product }) {
       <h3>{ name }</h3>
       <div className="TopChartLegend">
         Динамика продаж
-        <div className="TopChartGreenDot" />
-        { product.salesBoost > 0 &&
-          <div className="TopProductCard-DynamicsSales">
-            +{Math.round(product.salesBoost * 100)}%
-          </div>
+        <div className="ChartLegend-GreenDot" />
+        { product.salesBoostRevenue > 0 &&
+          <>
+            <div className="ChartLegend-SalesBoostRevenue">
+              +{product.salesBoostRevenue} ₽
+            </div>
+            <div className="ChartLegend-SalesBoostPercentage">
+              (+{product.salesBoostPercentage}%)
+            </div>
+          </>
           } 
         <span>Продажи</span>
-        <div className="TopChartBlueDot" />
+        <div className="ChartLegend-BlueDot" />
         { product.pricesBoost > 0 &&
-          <div className="TopProductCard-DynamicsPrices">
+          <div className="ChartLegend-DynamicsPrices">
             +{Math.round(product.pricesBoost * 100)}%
           </div>
           }

@@ -30,6 +30,7 @@ body {
   display: flex;
   border: 1px solid #E6E7EC;
   border-radius: 7px;
+  padding: 24px;
 }
 .ProductCard-Showcase {
   width: 312px;
@@ -53,6 +54,35 @@ body {
 
 .ProductCard-Description {
   margin-left: 24px;
+  flex: 1;
+}
+
+.ProductCard-Description h3 {
+  margin-top: 0;
+}
+
+.ProductCard-Stats {
+
+  margin-right: 24px;
+  margin-left: 24px;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.ProductCard-Stats p {
+  color: #9EA1B4;
+  margin: 0;
+}
+.ProductCard-Stats b {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+}
+.ProductCard-Stats p + b {
+  margin-top: 24px;
 }
 .ProductCard-Description p {
   color: #676B84;
@@ -83,19 +113,7 @@ body {
   padding: 28px;
 }
 
-.TopProductCard-DynamicsPrices {
-  margin-right: 7px;
-  color: #0D75FF;
-  font-size: 16px;
-  font-weight: bold;
-}
 
-.TopProductCard-DynamicsSales {
-  margin-right: 7px;
-  color: #118E01;
-  font-size: 16px;
-  font-weight: bold;
-}
 
 .TopProductCard-Image {
   width: 220px;
@@ -135,6 +153,11 @@ body {
   border-radius: 7px;
 }
 
+.ChartLegend {
+  display: flex;
+  align-items: center;
+}
+
 .TopChartLegend {
   display: flex;
   align-items: center;
@@ -145,7 +168,34 @@ body {
   color: #9EA1B4;
 }
 
-.TopChartGreenDot, .TopChartBlueDot {
+
+.ChartLegend-DynamicsPrices {
+  margin-right: 7px;
+  color: #0D75FF;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ChartLegend-SalesBoostRevenue {
+  margin-right: 7px;
+  color: #118E01;
+  font-size: 16px;
+  font-weight: bold;
+}
+.ChartLegend-SalesBoostPercentage {
+  margin-right: 7px;
+  color: #118E01;
+  font-size: 14px;
+}
+
+.ChartLegend-ShopsBoost {
+  margin-right: 7px;
+  color: #d36163;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ChartLegend-GreenDot, .ChartLegend-BlueDot, .ChartLegend-RedDot {
   margin-left: 14px;
   margin-right: 7px;
   width: 14px;
@@ -153,10 +203,18 @@ body {
   border-radius: 50%;
 }
 
-.TopChartGreenDot {
+.ChartLegend-GreenDot {
   background-color: #118E01;
 }
 
-.TopChartBlueDot {
+.ChartLegend-BlueDot {
   background-color: #0D75FF;
+}
+
+.ChartLegend-RedDot {
+  background-color: #d36163;
+}
+
+.SalesChart h3 {
+  display: flex;
 }
