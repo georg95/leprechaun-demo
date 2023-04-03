@@ -44,7 +44,7 @@ function Charts({ product }) {
               <div className="ChartLegend-GreenDot" />
               <div className="ChartLegend-SalesBoostRevenue">
                 {product.salesBoostRevenue > 0 ? '+' : ''}
-                {product.salesBoostRevenue} ₽
+                {product.salesBoostRevenue} у.е.
               </div>
               <div className="ChartLegend-SalesBoostPercentage">
                 ({product.salesBoostPercentage > 0 ? '+' : ''}{product.salesBoostPercentage}%)
@@ -115,7 +115,7 @@ function Charts({ product }) {
               type="number"
               tickFormatter={dateFormatter} />
             <YAxis />
-            <Tooltip labelFormatter={dateFormatter} formatter={(value) => `${value} ₽`} />
+            <Tooltip labelFormatter={dateFormatter} formatter={(value) => `${value} у.е.`} />
             <Area
               dot={false}
               animationDuration={400}

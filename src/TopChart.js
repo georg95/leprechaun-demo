@@ -25,7 +25,7 @@ function TopChart({ product }) {
         { product.salesBoostRevenue > 0 &&
           <>
             <div className="ChartLegend-SalesBoostRevenue">
-              +{product.salesBoostRevenue} ₽
+              +{product.salesBoostRevenue} у.е.
             </div>
             <div className="ChartLegend-SalesBoostPercentage">
               (+{product.salesBoostPercentage}%)
@@ -70,7 +70,7 @@ function TopChart({ product }) {
           <Tooltip
             labelFormatter={dateFormatter}
             formatter={(value, name) => {
-              return name === 'Продажи' ? `${value} шт` : `${value} ₽`
+              return name === 'Продажи' ? `${value} шт` : `${value} у.е.`
             }} />
           <Area
             dot={false}
